@@ -22,9 +22,30 @@
  * To disable strict typing, comment out the directive below.
  */
 
-declare(strict_types=1);
+// declare(strict_types=1);
 
-function colorCode(string $color): int
+define(
+    "COLORS",
+    array(
+        0 => "black",
+        1 => 'brown',
+        2 => 'red',
+        3 => 'orange',
+        4 => 'yellow',
+        5 => 'green',
+        6 => 'blue',
+        7 => 'violet',
+        8 => 'grey',
+        9 => 'white'
+    )
+);
+function colorCode(string $color)
 {
-    throw new \BadFunctionCallException("Implement the colorCode function");
+
+
+    // print_r($colors["Black"]);
+    // throw new \BadFunctionCallException("Implement the colorCode function");
+    return array_search(strtolower($color), COLORS);
 }
+
+// colorCode("Black");
