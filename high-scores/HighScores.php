@@ -21,13 +21,37 @@
  *
  * To disable strict typing, comment out the directive below.
  */
+// highest score from the list, 
+// the last added score 
+// the three highest scores
 
-declare(strict_types=1);
+// declare(strict_types=1);
 
 class HighScores
 {
+    public $scores;
+    public $latest;
+    public $personalBest;
+    public $personalTopThree;
     public function __construct(array $scores)
     {
-        throw new \BadFunctionCallException("Implement the HighScores class");
+        $this->scores = $scores;
+        $this->latest = end($scores);
+        $this->personalBest = max($scores);
+
+
+        rsort($scores);
+        $this->personalTopThree = $this->personalTopThree();
+    }
+    function personalTopThree()
+    {
+        $scores = $this->scores;
+        rsort($scores);
+        return array_slice($scores, 0, 3);
     }
 }
+$input = [30, 50, 20, 70];
+$newScores = new HighScores($input);
+
+print_r($newScores->scores);
+print_r($newScores->personalTopThree());
