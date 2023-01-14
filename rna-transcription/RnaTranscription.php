@@ -26,5 +26,20 @@ declare(strict_types=1);
 
 function toRna(string $dna): string
 {
-    throw new \BadFunctionCallException("Implement the toRna function");
+    // $splitString = str_split($dna);
+
+    $compliments = ["G" => "C", "C" => "G", "T" => "A", "A" => "U"];
+    $strCompliment = '';
+    $length = strlen($dna);
+    for ($i = 0; $i < $length; $i++) {
+        // echo $compliments[$dna[$i]];
+
+        // echo $strCompliment .= $compliments[$dna[$i]];
+        $strCompliment .= $compliments[$dna[$i]];
+        // echo $compliments[$dna[$str]];
+        // return $compliments[$dna[$str]];
+    }
+    return $strCompliment;
 }
+
+echo toRNA("aga");
