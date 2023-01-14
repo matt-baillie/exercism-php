@@ -24,15 +24,75 @@
 
 declare(strict_types=1);
 
+// $names = (array) null;
+
 class Robot
 {
+    private static array $nameLog = [];
+    public string $name = '';
+
+    // public function __construct()
+    // {
+    //     $this->name = $this->getName();
+    // }
+
     public function getName(): string
     {
-        throw new \BadMethodCallException("Implement the getName method");
+        // if ($this->name === '') {
+
+        //     $letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        //     $this->name = $letters[rand(0, 25)] . $letters[rand(0, 25)] . rand(0, 9) . rand(0, 9) . rand(0, 9);
+        //     if (in_array($this->name, self::$names)) {
+        //         $this->name = "";
+        //         $this->getName();
+        //     } else {
+
+        //         array_push(self::$names, $this->name);
+        //     }
+        //     return $this->name;
+        // }
+        if ($this->name === "") {
+            // $letters = [];
+            // for ($i = 0; $i < 2; $i++) {
+            //     array_push($letters, chr(rand(65, 90)));
+            // }
+            // $nums = [];
+            // for ($i = 0; $i < 3; $i++) {
+            //     array_push($nums, rand(0, 9));
+            // }
+            // $this->name = implode("", [...$letters, ...$nums]);
+            $letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            $this->name = $letters[rand(0, 25)] . $letters[rand(0, 25)] . rand(0, 9) . rand(0, 9) . rand(0, 9);
+            if (in_array($this->name, self::$nameLog)) {
+                $this->name = "";
+                $this->getName();
+            } else {
+                array_push(self::$nameLog, $this->name);
+            }
+        }
+        return $this->name;
     }
 
+    public function getNames()
+    {
+        // print_r(self::$names);
+    }
     public function reset(): void
     {
-        throw new \BadMethodCallException("Implement the reset method");
+        $this->name = '';
+        return;
     }
 }
+
+$newBot = new Robot();
+$newBot2 = new Robot();
+$newBot3 = new Robot();
+echo "Current name is: $newBot->name \n";
+echo $newBot->getName();
+
+echo $newBot->reset();
+echo "\n";
+echo $newBot->name . "\n";
+echo "Current name is: $newBot->name\n";
+echo $newBot->getName();
+$newBot3->getNames();
