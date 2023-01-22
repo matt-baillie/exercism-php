@@ -26,5 +26,23 @@ declare(strict_types=1);
 
 function detectAnagrams(string $word, array $anagrams): array
 {
-    throw new \BadFunctionCallException("Implement the detectAnagrams function");
+    $wordArray = str_split($word);
+    $count = count($anagrams);
+    $anagramWords = [];
+
+    for ($i = 0; $i < $count; $i++) {
+        $anagramSplit = str_split($anagrams[$i]);
+        $diff1 = array_diff($wordArray, $anagramSplit);
+        $diff2 = array_diff($anagramSplit, $wordArray);
+
+        if (count($diff1) === 0 && count($diff2) === 0) {
+
+            array_push($anagramWords, $anagrams[$i]);
+        }
+    }
+
+    return $anagramWords;
 }
+
+// detectAnagrams("google", ['elgoog', 'listen']);
+print_r(detectAnagrams('galea', ['eagle']));
