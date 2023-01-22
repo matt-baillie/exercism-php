@@ -26,5 +26,9 @@ declare(strict_types=1);
 
 function encode(string $text): string
 {
+    // define alphabet
+    // reverse alphabet
+    // use preg_replace with reg expression (selecting only letters)
+    // then swap the letters
     throw new \BadFunctionCallException("Implement the encode function");
 }
