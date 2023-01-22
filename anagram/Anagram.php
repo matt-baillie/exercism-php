@@ -26,23 +26,17 @@ declare(strict_types=1);
 
 function detectAnagrams(string $word, array $anagrams): array
 {
-    $wordArray = str_split($word);
-    $count = count($anagrams);
-    $anagramWords = [];
+    $lowwerWord = strtolower($word);
+    $result = [];
 
-    for ($i = 0; $i < $count; $i++) {
-        $anagramSplit = str_split($anagrams[$i]);
-        $diff1 = array_diff($wordArray, $anagramSplit);
-        $diff2 = array_diff($anagramSplit, $wordArray);
+    foreach ($anagrams as $anagram) {
+        $lowwerAnagram = strtolower($anagram);
+        if ($lowwerAnagram === $lowwerWord)
+            continue;
 
-        if (count($diff1) === 0 && count($diff2) === 0) {
-
-            array_push($anagramWords, $anagrams[$i]);
+        if (count_chars($lowwerWord, 1) == count_chars($lowwerAnagram, 1)) {
+            $result[] = $anagram;
         }
     }
-
-    return $anagramWords;
+    return $result;
 }
-
-// detectAnagrams("google", ['elgoog', 'listen']);
-print_r(detectAnagrams('galea', ['eagle']));
