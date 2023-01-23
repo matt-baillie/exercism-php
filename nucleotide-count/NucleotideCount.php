@@ -23,8 +23,16 @@
  */
 
 declare(strict_types=1);
-
 function nucleotideCount(string $input): array
 {
-    throw new \BadFunctionCallException("Implement the nucleotideCount function");
+    $validkeys = [97 => 0, 99 => 0, 103 => 0, 116 => 0];
+    $input = strtolower($input);
+    count_chars($input, 1);
+    $difference = array_diff_key(count_chars($input, 1), $validkeys);
+    if (count($difference) > 0) {
+        // throw new InvalidArgumentException("Error");
+    }
+    return count_chars($input, 1);
 }
+
+print_r(nucleotideCount("AGTCM"));
